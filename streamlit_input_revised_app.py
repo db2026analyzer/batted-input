@@ -132,6 +132,7 @@ with col1:
             "堀川",
             "蓮香",
             "窪",
+            "南光",
         ],
         horizontal=True,
     )
@@ -171,12 +172,12 @@ with col2:
 
             st.session_state.marker_data.append(
                 {
-                    "id": str(uuid.uuid4()),  # ユニークID
+                    "id": str(uuid.uuid4()),
                     "team_name": selected_team_file,
                     "player_name": selected_player,
-                    "player_batLR": selected_player_batLR,  # ← 追加！
-                    "opponents": opponents,
+                    "player_batLR": selected_player_batLR,
                     "pitcherLR": pitcherLR,
+                    "opponents": opponents,
                     "pitchername": pitchername,
                     "runners": runners,
                     "strikes": strikes,
@@ -187,6 +188,7 @@ with col2:
                     "hit_rank": hit_rank,
                     "x_coord": x,
                     "y_coord": y,
+                    # "hit_angle_deg": round(theta, 2),  # ← ★ 追加
                 }
             )
 
