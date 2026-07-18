@@ -78,31 +78,25 @@ with col1:
     all_csv_files = glob.glob("*.csv")
     team_files = sorted([f for f in all_csv_files if not f.endswith("_data.csv")])
 
-    # ✅ 「OP戦」を追加
-    team_options = team_files + ["OP戦"]
+    team_options = team_files
     selected_team_file = st.selectbox("チームを選択", team_options)
 
     selected_player = None
     selected_player_batLR = None
 
-    # --- 通常のチーム選択時 ---
-    if selected_team_file and selected_team_file != "OP戦":
-        try:
-            roster_df = pd.read_csv(selected_team_file, encoding="cp932", header=None)
-            player_dict = dict(zip(roster_df.iloc[:, 0], roster_df.iloc[:, 1]))
+    
+    try:
+        roster_df = pd.read_csv(selected_team_file,encoding="cp932", header=None)
+        player_dict = dict(zip(roster_df.iloc[:, 0], roster_df.iloc[:, 1]))
 
-            player_list = list(player_dict.keys())
-            selected_player = st.selectbox("選手を選択", player_list)
+        player_list = list(player_dict.keys())
+        selected_player = st.selectbox("選手を選択", player_list)
 
-            if selected_player:
-                selected_player_batLR = player_dict[selected_player]
+        if selected_player:
+            selected_player_batLR = player_dict[selected_player]
 
-        except Exception as e:
-            st.error(f"{selected_team_file}の読み込みに失敗しました: {e}")
-
-    # --- OP戦選択時 ---
-    elif selected_team_file == "OP戦":
-        st.info("※OP戦モードです。選手入力は不要です。")
+    except Exception as e:
+        st.error(f"{selected_team_file}の読み込みに失敗しました: {e}")
 
     # --- 共通設定 ---
     if st.button("マーカーをクリア"):
