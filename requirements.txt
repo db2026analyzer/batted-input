@@ -3,6 +3,5 @@ plotly
 pandas
 Pillow
 streamlit-image-coordinates
-statsmodels.api
-statsmodels.formula.api
-matplotlib.pyplot
+statsmodels
+matplotlib
