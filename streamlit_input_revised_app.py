@@ -79,7 +79,7 @@ with col1:
     team_files = sorted([f for f in all_csv_files if not f.endswith("_data.csv")])
 
     # ✅ 「OP戦」を追加
-    team_options = team_files + ["OP戦"]
+    team_options = team_files
     selected_team_file = st.selectbox("チームを選択", team_options)
 
     selected_player = None
@@ -99,10 +99,6 @@ with col1:
 
         except Exception as e:
             st.error(f"{selected_team_file}の読み込みに失敗しました: {e}")
-
-    # --- OP戦選択時 ---
-    elif selected_team_file == "OP戦":
-        st.info("※OP戦モードです。選手入力は不要です。")
 
     # --- 共通設定 ---
     if st.button("マーカーをクリア"):
